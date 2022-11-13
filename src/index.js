@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import AppHeader from './components/AppHeader'
 import SearchPanel from './components/SearchPanel'
-import TodoList from './components/TodoList'
+import TodoList from './components/todo-list/TodoList'
 
 const App = () => {
   const todoData = [
