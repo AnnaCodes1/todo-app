@@ -3,6 +3,12 @@ import ReactDOM from 'react-dom/client'
 import AppHeader from './components/AppHeader'
 import SearchPanel from './components/SearchPanel'
 import TodoList from './components/todo-list/TodoList'
+import AddTodo from './components/add-todo/AddTodo'
+
+import './App.css'
+
+
+
 
 const App = () => {
   const todoData = [
@@ -12,10 +18,11 @@ const App = () => {
   ]
 
   return (
-    <div>
+    <div className="app">
       <AppHeader />
       <SearchPanel />
       <TodoList todos={todoData} />
+      <AddTodo />
     </div>
   )
 }
