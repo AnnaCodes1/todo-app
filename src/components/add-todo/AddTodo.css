@@ -1,0 +1,8 @@
+
+.add-todo {
+  display: flex;
+  margin-top: 10px;
+}
+.add-todo-input {
+  margin-right: 5px;
+}

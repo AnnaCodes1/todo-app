@@ -1,14 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import AppHeader from './components/AppHeader'
-import SearchPanel from './components/SearchPanel'
+import AppHeader from './components/app-header/AppHeader'
+import SearchPanel from './components/search-panel/SearchPanel'
 import TodoList from './components/todo-list/TodoList'
 import AddTodo from './components/add-todo/AddTodo'
-
 import './App.css'
-
-
-
 
 const App = () => {
   const todoData = [
