@@ -1,14 +1,14 @@
-import React from "react"
-import SortingButtons from '../sorting-buttons/SortingButtons'
-import classes from './SearchPanel.module.css'
+
+import React from 'react';
+
+import './search-panel.css';
 
 const SearchPanel = () => {
   return (
-    <div className={classes.searchAndSort}>
-      <input className="form-control"  placeholder='type to search' /> 
-      <SortingButtons />
-    </div>
-  )
-}
+    <input type="text"
+              className="form-control search-input"
+              placeholder="type to search" />
+  );
+};
 
-export default SearchPanel
+export default SearchPanel;
