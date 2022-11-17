@@ -2,7 +2,7 @@ import React from 'react'
 
 import './item-status-filter.css'
 
-class ItemStatusFilter extends React.Component {
+export default class ItemStatusFilter extends React.Component {
   render() {
     return (
       <div className="btn-group">
@@ -33,4 +33,4 @@ class ItemStatusFilter extends React.Component {
 //   );
 // };
 
-export default ItemStatusFilter
+// export default ItemStatusFilter
