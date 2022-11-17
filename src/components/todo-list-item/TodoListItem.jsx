@@ -10,14 +10,18 @@ import './todo-list-item.css'
 //   }
 
 //   onLabelClick = () => {
-//     this.setState({
-//       done: true
+//     this.setState((state) => {
+//       return {
+//         done: !state.done
+//       }
 //     })
 //   }
 
 //   onImportantClick = () => {
-//     this.setState({
-//       important: true
+//     this.setState((state) => {
+//       return {
+//         important: !state.important
+//       }
 //     })
 //   }
 
@@ -29,15 +33,13 @@ import './todo-list-item.css'
 //     if(done) {
 //       classNames += ' done'
 //     }
-
-//     const style = {
-//       color: important ? 'steelblue' : 'black',
-//       fontWeight: important ? 'bold' : 'normal',
+//     if(important) {
+//     classNames += ' important'
 //     }
 
 //     return (
 //       <span className={classNames}>
-//         <span className="todo-list-item-label" style={style}
+//         <span className="todo-list-item-label"
 //          onClick={this.onLabelClick}>
 //           {label}
 //         </span>
@@ -59,29 +61,28 @@ const TodoListItem = ({ label }) => {
   const [important, setImportant] = useState(false)
 
   const onLabelClick = () => {
-    setDone(true)
+    setDone((done) => {
+      return !done
+    })
   }
 
-  const onImportantClick = () => {
-    setImportant(true)
+  const onMarkImportant = () => {
+    setImportant((important => {
+      return !important
+    }))
   }
 
   let classNames = 'todo-list-item'
   if (done) {
     classNames += ' done'
   }
-
-  const style = {
-    color: important ? 'steelblue' : 'black',
-    fontWeight: important ? 'bold' : 'normal',
+  if (important) {
+    classNames += ' important'
   }
 
   return (
     <span className={classNames}>
-      <span
-        className="todo-list-item-label"
-        style={style}
-        onClick={onLabelClick}>
+      <span className="todo-list-item-label" onClick={onLabelClick}>
         {label}
       </span>
       <span>
@@ -91,7 +92,7 @@ const TodoListItem = ({ label }) => {
         <button
           type="button"
           className="btn btn-outline-success "
-          onClick={onImportantClick}>
+          onClick={onMarkImportant}>
           <i className="fa fa-exclamation "></i>
         </button>
       </span>
