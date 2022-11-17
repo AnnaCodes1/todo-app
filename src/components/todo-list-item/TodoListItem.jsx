@@ -5,7 +5,8 @@ import './todo-list-item.css'
 // class TodoListItem extends React.Component {
 
 //   state = {
-//     done: false
+//     done: false,
+//     important: false
 //   }
 
 //   onLabelClick = () => {
@@ -14,9 +15,15 @@ import './todo-list-item.css'
 //     })
 //   }
 
+//   onImportantClick = () => {
+//     this.setState({
+//       important: true
+//     })
+//   }
+
 //   render() {
-//     const { label, important = false } = this.props
-//     const {done} = this.state;
+//     const { label} = this.props
+//     const {done, important} = this.state;
 
 //     let classNames = "todo-list-item";
 //     if(done) {
@@ -38,7 +45,7 @@ import './todo-list-item.css'
 //           <button type="button" className="btn btn-outline-danger">
 //             <i className="fa fa-trash-o"></i>
 //           </button>
-//           <button type="button" className="btn btn-outline-success ">
+//           <button type="button" className="btn btn-outline-success " onClick={this.onImportantClick}>
 //             <i className="fa fa-exclamation "></i>
 //           </button>
 //         </span>
@@ -47,11 +54,16 @@ import './todo-list-item.css'
 //   }
 // }
 
-const TodoListItem = ({ label, important = false }) => {
-  
+const TodoListItem = ({ label }) => {
   const [done, setDone] = useState(false)
+  const [important, setImportant] = useState(false)
+
   const onLabelClick = () => {
     setDone(true)
+  }
+
+  const onImportantClick = () => {
+    setImportant(true)
   }
 
   let classNames = 'todo-list-item'
@@ -76,7 +88,10 @@ const TodoListItem = ({ label, important = false }) => {
         <button type="button" className="btn btn-outline-danger">
           <i className="fa fa-trash-o"></i>
         </button>
-        <button type="button" className="btn btn-outline-success ">
+        <button
+          type="button"
+          className="btn btn-outline-success "
+          onClick={onImportantClick}>
           <i className="fa fa-exclamation "></i>
         </button>
       </span>
