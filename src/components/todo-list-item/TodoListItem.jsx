@@ -56,7 +56,7 @@ class TodoListItem extends React.Component {
   }
 }
 
-// const TodoListItem = ({ label }) => {
+// const TodoListItem = ({ label, onDeleted }) => {
 //   const [done, setDone] = useState(false)
 //   const [important, setImportant] = useState(false)
 
@@ -86,7 +86,7 @@ class TodoListItem extends React.Component {
 //         {label}
 //       </span>
 //       <span>
-//         <button type="button" className="btn btn-outline-danger">
+//         <button type="button" className="btn btn-outline-danger" onCLick={onDeleted}>
 //           <i className="fa fa-trash-o"></i>
 //         </button>
 //         <button
