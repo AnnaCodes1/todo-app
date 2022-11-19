@@ -9,6 +9,8 @@ import './App.css'
 import ItemAddForm from '../item-add-form/ItemAddForm'
 
 // class App extends React.Component {
+//   maxId = 100
+
 //   state = {
 //     todoData: [
 //       { label: 'Drink Coffee', id: 1 },
@@ -27,6 +29,21 @@ import ItemAddForm from '../item-add-form/ItemAddForm'
 //     })
 //   }
 
+//   addItem = (text) => {
+//     // generate id
+//     const newItem = {
+//       label: text,
+//       id: this.maxId++,
+//     }
+//     // add element in array
+//     this.setState(({ todoData }) => {
+//       const newArray = [...todoData, newItem]
+//       return {
+//         todoData: newArray,
+//       }
+//     })
+//   }
+
 //   render() {
 //     const { todoData } = this.state
 
@@ -39,13 +56,17 @@ import ItemAddForm from '../item-add-form/ItemAddForm'
 //         </div>
 
 //         <TodoList todos={todoData} onDeleted={this.deleteItem} />
-//         <ItemAddForm />
+//         <ItemAddForm onAdded={this.addItem} />
 //       </div>
 //     )
 //   }
 // }
 
+
+
+let maxId = 100;
 const App = () => {
+
   const [todoData, setTodoData] = useState([
     { label: 'Drink Coffee', id: 1 },
     { label: 'Make Awesome App', id: 2 },
@@ -58,6 +79,17 @@ const App = () => {
     const idx = todoData.findIndex((el) => el.id === id)
     // Return new array with every item from array but deleted one
     setTodoData([...todoData.slice(0, idx), ...todoData.slice(idx + 1)])
+  }
+
+  const addItem = (text) => {
+  //generate id
+    const newItem = {
+      label: text,
+      id: maxId++,
+      
+    }
+  //add element to array
+  setTodoData([...todoData, newItem])
   }
 
   return (
@@ -76,7 +108,7 @@ const App = () => {
         </h2>
       )}
 
-      <ItemAddForm />
+      <ItemAddForm onAdded={addItem} />
     </div>
   )
 }
