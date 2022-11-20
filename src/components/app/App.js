@@ -9,7 +9,7 @@ import './App.css'
 import ItemAddForm from '../item-add-form/ItemAddForm'
 
 // class App extends React.Component {
-//   maxId = 1;
+//   maxId = 1
 
 //   state = {
 //     todoData: [
@@ -74,16 +74,25 @@ import ItemAddForm from '../item-add-form/ItemAddForm'
 //     )
 //   }
 // }
+let maxId = 1;
 
-let maxId = 100
+const createTodoItem = (label) => {
+  return {
+    label: label,
+    id: maxId++,
+    important: false,
+    done: false,
+  }
+}
+
+const initialItems = [
+  createTodoItem('Drink Coffee'),
+  createTodoItem('Learn React'),
+  createTodoItem('Make awesome app'),
+]
+
 const App = () => {
-  const [todoData, setTodoData] = useState([
-    createTodoItem('Drink Coffee'),
-    createTodoItem('Learn React'),
-    createTodoItem('Make awesome app'),
-  ])
-
-  const [createTodoItem, setCreateTodoItem] = useState()
+  const [todoData, setTodoData] = useState(initialItems)
 
   const deleteItem = (id) => {
     //Find index of an item we want to delete
@@ -93,18 +102,8 @@ const App = () => {
     setTodoData([...todoData.slice(0, idx), ...todoData.slice(idx + 1)])
   }
 
-  //  createTodoItem (label) {
-  //     return{
-  //       label,
-  //       id: maxId++,
-  //       important: false,
-  //       done: false
-  //     }
-  //   }
   const addItem = (text) => {
-    //generate id
     const newItem = createTodoItem(text)
-    //add element to array
     setTodoData([...todoData, newItem])
   }
 
