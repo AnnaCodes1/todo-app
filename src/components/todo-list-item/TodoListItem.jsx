@@ -9,24 +9,26 @@ class TodoListItem extends React.Component {
     important: false
   }
 
-  onLabelClick = () => {
-    this.setState((state) => {
-      return {
-        done: !state.done
-      }
-    })
-  }
 
-  onImportantClick = () => {
-    this.setState((state) => {
-      return {
-        important: !state.important
-      }
-    })
-  }
+  //DELETE THIS ONCE USED SOMEWHERE ELSE:
+  // onLabelClick = () => {
+  //   this.setState((state) => {
+  //     return {
+  //       done: !state.done
+  //     }
+  //   })
+  // }
+
+  // onImportantClick = () => {
+  //   this.setState((state) => {
+  //     return {
+  //       important: !state.important
+  //     }
+  //   })
+  // }
 
   render() {
-    const { label, onDeleted} = this.props
+    const { label, onDeleted, onToggleImportant, onToggleDone} = this.props
     const {done, important} = this.state;
 
     let classNames = "todo-list-item";
@@ -40,14 +42,14 @@ class TodoListItem extends React.Component {
     return (
       <span className={classNames}>
         <span className="todo-list-item-label"
-         onClick={this.onLabelClick}>
+         onClick={onToggleDone}>
           {label}
         </span>
         <span>
           <button type="button" className="btn btn-outline-danger" onClick={onDeleted}>
             <i className="fa fa-trash-o"></i>
           </button>
-          <button type="button" className="btn btn-outline-success " onClick={this.onImportantClick}>
+          <button type="button" className="btn btn-outline-success " onClick={onToggleImportant}>
             <i className="fa fa-exclamation "></i>
           </button>
         </span>
