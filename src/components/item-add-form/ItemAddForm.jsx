@@ -20,17 +20,17 @@ class ItemAddForm extends React.Component {
     })
   }
   render() {
-    const {label} = this.state
+  
     return (
       <form className="add-form" onSubmit={this.onSubmit}>
         <input
-          value={label}
+          value={this.state.label}
           onChange={this.onLabelChange}
           type="text"
           className="form-control search-input"
           placeholder="Something else to do"
         />
-        <button type="button" className="btn btn-outline-secondary">
+        <button type="submit" className="btn btn-outline-secondary">
           Add
         </button>
       </form>
