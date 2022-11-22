@@ -104,32 +104,33 @@ import './App.css'
 // }
 
 // Functional Component
-let maxId = 1
-
-const createTodoItem = (label) => {
-  return {
-    label: label,
-    id: maxId++,
-    important: false,
-    done: false,
-  }
-}
-
-const initialItems = [
-  createTodoItem('Drink Coffee'),
-  createTodoItem('Learn React'),
-  createTodoItem('Make awesome app'),
-]
 
 const App = () => {
+  //id
+  let maxId = 100
+
+  //new todo item frame
+  const createTodoItem = (label) => {
+    return {
+      label: label,
+      id: maxId++,
+      important: false,
+      done: false,
+    }
+  }
+
+  //displayed items on the page
+  const initialItems = [
+    createTodoItem('Drink Coffee'),
+    createTodoItem('Learn React'),
+    createTodoItem('Make awesome app'),
+  ]
+
+  //Created state for array of objects
   const [todoData, setTodoData] = useState(initialItems)
-  const doneCount = todoData.filter((el) => el.done).length
-  const todoCount = todoData.length - doneCount
 
   const deleteItem = (id) => {
-    //Find index of an item we want to delete
     const idx = todoData.findIndex((el) => el.id === id)
-    // Return new array with every item from array but deleted one
     setTodoData([...todoData.slice(0, idx), ...todoData.slice(idx + 1)])
   }
 
@@ -138,25 +139,26 @@ const App = () => {
     setTodoData([...todoData, newItem])
   }
 
-  
+  // Function for properties of each obj in array, f.e. Done and Important
   const toggleProperty = (arr, id, propName) => {
     const idx = arr.findIndex((el) => el.id === id)
     const oldItem = arr[idx]
     const newItem = { ...oldItem, [propName]: !oldItem[propName] }
-    setTodoData([
-      ...arr.slice(0, idx),
-      newItem,
-      ...arr.slice(idx + 1),
-    ])
+    setTodoData([...arr.slice(0, idx), newItem, ...arr.slice(idx + 1)])
   }
 
   const onToggleDone = (id) => {
-   toggleProperty(todoData, id, 'done')
+    toggleProperty(todoData, id, 'done')
   }
 
   const onToggleImportant = (id) => {
     toggleProperty(todoData, id, 'important')
   }
+
+  // Displaying number of todos done and left
+  const doneCount = todoData.filter((el) => el.done).length
+  const todoCount = todoData.length - doneCount
+
 
   return (
     <div className="todo-app">
