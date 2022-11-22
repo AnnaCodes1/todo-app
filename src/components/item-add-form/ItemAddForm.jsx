@@ -40,7 +40,7 @@ const ItemAddForm = ({ onAdded }) => {
   const [input, setInput] = useState('')
 
   const newInput = (e) => {
-    setInput(e.target.value)
+    setInput(e.target.value);   
   }
 
   return (
