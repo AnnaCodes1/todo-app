@@ -47,28 +47,31 @@ class App extends React.Component {
     })
   }
 
+
+  toggleProperty(arr, id, propName) {
+    const idx = arr.findIndex((el) => el.id === id);
+    const oldItem = arr[idx]
+    const newItem = {...oldItem, [propName]: !oldItem[propName]};
+    return [
+      ...arr.slice(0, idx), newItem, ...arr.slice(idx + 1)
+    ]
+  }
+
   //when element became done or important:
   onToggleDone = (id) => {
     this.setState(({ todoData }) => {
-      // 1. Update object
-      const idx = todoData.findIndex((el) => el.id === id)
-      const oldItem = todoData[idx]
-      const newItem = { ...oldItem, done: !oldItem.done }
-
-      //2. Construct new array
-      const newArray = [
-        ...todoData.slice(0, idx),
-        newItem,
-        ...todoData.slice(idx + 1),
-      ]
       return {
-        todoData: newArray,
+        todoData: this.toggleProperty(todoData, id, 'done')
       }
     })
   }
 
   onToggleImportant = (id) => {
-    console.log('Toggle important:', id)
+    this.setState(({ todoData }) => {
+      return {
+        todoData: this.toggleProperty(todoData, id, 'important')
+      }
+    })
   }
 
   render() {
