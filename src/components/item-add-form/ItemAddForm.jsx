@@ -59,7 +59,7 @@ class ItemAddForm extends React.Component {
 //         className="form-control search-input"
 //         placeholder="Something else to do"
 //       />
-//       <button type="button" className="btn btn-outline-secondary">
+//       <button type="submit" className="btn btn-outline-secondary">
 //         Add
 //       </button>
 //     </form>
