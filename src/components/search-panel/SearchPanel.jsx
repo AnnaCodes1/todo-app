@@ -6,7 +6,7 @@ class SearchPanel extends React.Component {
   state = {
     term: '',
   }
-  onSearchChange = (e) => {
+  onSearchChange = e => {
     const term = e.target.value
     this.setState({ term })
     this.props.onSearchChange(term)
@@ -18,9 +18,9 @@ class SearchPanel extends React.Component {
         <input
           value={this.state.term}
           onChange={this.onSearchChange}
-          type="text"
-          className="form-control search-input"
-          placeholder="type to search"
+          type='text'
+          className='form-control search-input'
+          placeholder='type to search'
         />
       </form>
     )

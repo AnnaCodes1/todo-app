@@ -28,9 +28,9 @@ class App extends React.Component {
       done: false,
     }
   }
-  deleteItem = (id) => {
+  deleteItem = id => {
     this.setState(({ todoData }) => {
-      const idx = todoData.findIndex((el) => el.id === id)
+      const idx = todoData.findIndex(el => el.id === id)
       const newArray = [...todoData.slice(0, idx), ...todoData.slice(idx + 1)]
       return {
         todoData: newArray,
@@ -38,7 +38,7 @@ class App extends React.Component {
     })
   }
 
-  addItem = (text) => {
+  addItem = text => {
     const newItem = this.createTodoItem(text)
     // add element in array
     this.setState(({ todoData }) => {
@@ -50,13 +50,13 @@ class App extends React.Component {
   }
 
   toggleProperty(arr, id, propName) {
-    const idx = arr.findIndex((el) => el.id === id)
+    const idx = arr.findIndex(el => el.id === id)
     const oldItem = arr[idx]
     const newItem = { ...oldItem, [propName]: !oldItem[propName] }
     return [...arr.slice(0, idx), newItem, ...arr.slice(idx + 1)]
   }
 
-  onToggleDone = (id) => {
+  onToggleDone = id => {
     this.setState(({ todoData }) => {
       return {
         todoData: this.toggleProperty(todoData, id, 'done'),
@@ -64,7 +64,7 @@ class App extends React.Component {
     })
   }
 
-  onToggleImportant = (id) => {
+  onToggleImportant = id => {
     this.setState(({ todoData }) => {
       return {
         todoData: this.toggleProperty(todoData, id, 'important'),
@@ -72,15 +72,19 @@ class App extends React.Component {
     })
   }
 
-  onSearchChange = (term) => {
+  onSearchChange = term => {
     this.setState({ term })
+  }
+
+  onFilterChange = filter => {
+    this.setState({filter})
   }
 
   search(items, term) {
     if (term.length === 0) {
       return items
     }
-    return items.filter((item) => {
+    return items.filter(item => {
       return item.label.toLowerCase().indexOf(term.toLowerCase()) > -1
     })
   }
@@ -90,11 +94,11 @@ class App extends React.Component {
       case 'all':
         return items
       case 'active':
-        return items.filter((item) => !item.done)
+        return items.filter(item => !item.done)
       case 'done':
-        return items.filter((item) => item.done)
+        return items.filter(item => item.done)
       default:
-       return items
+        return items
     }
   }
 
@@ -102,15 +106,20 @@ class App extends React.Component {
     const { todoData, term, filter } = this.state
     const visibleItems = this.filter(this.search(todoData, term), filter)
 
-    const doneCount = todoData.filter((el) => el.done).length
+    const doneCount = todoData.filter(el => el.done).length
     const todoCount = todoData.length - doneCount
 
     return (
-      <div className="todo-app">
-        <AppHeader toDo={todoCount} done={doneCount} />
-        <div className="top-panel d-flex">
+      <div className='todo-app'>
+        <AppHeader
+          toDo={todoCount}
+          done={doneCount}
+        />
+        <div className='top-panel d-flex'>
           <SearchPanel onSearchChange={this.onSearchChange} />
-          <ItemStatusFilter filter={filter} />
+          <ItemStatusFilter
+           filter={filter}
+           onFilterChange={this.onFilterChange} />
         </div>
 
         {todoData.length ? (
