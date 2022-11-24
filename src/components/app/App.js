@@ -110,7 +110,7 @@ class App extends React.Component {
         <AppHeader toDo={todoCount} done={doneCount} />
         <div className="top-panel d-flex">
           <SearchPanel onSearchChange={this.onSearchChange} />
-          <ItemStatusFilter />
+          <ItemStatusFilter filter={filter} />
         </div>
 
         {todoData.length ? (
